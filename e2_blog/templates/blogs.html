@@ -1,0 +1,81 @@
+{% extends './base/base.html' %}
+
+{% block content %}
+<!-- Page content -->
+<div class="container mt-5 blog-post animate">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Post content -->
+            <article>
+                <!-- Post header -->
+                <header class="mb-4">
+                    <!-- Post title -->
+                    <h1 style="color: white;" class="fw-bolder mb-1">{{ single_post.title }}</h1>
+                    <!-- Post meta content -->
+                    <div style="color: white;"  class="text-muted fst-italic mb-2">Posted on {{ single_post.created_at }} by {{ single_post.author }}</div>
+                    <!-- Post category -->
+                    <a style="color: white;"  class="badge text-decoration-none text-light" href="#!">{{ single_post.category }}</a>
+                </header>
+                <!-- Preview image figure -->
+                <figure class="mb-4"><img class="img-fluid rounded" src="{{ single_post.blog_image.url }}" alt="{{ single_post.title }}" /></figure>
+                <!-- Post content -->
+                <section style="color: white;"  class="mb-5">
+                    <p style="color: white;"  class="fs-5 mb-4">{{ single_post.short_description }}</p>
+                    <p style="color: white;"  class="fs-5 mb-4">{{ single_post.blog_body }}</p>
+                </section>
+
+                <!-- Comments -->
+                <h4 style="color: white;"  class="animate">Comment ({{ comment_count }})</h4>
+                {% if comments %}
+                {% for comment in comments %}
+                <div style="color: white;"  class="comment-card animate-fade">
+                    <p class="card-text mb-0">{{ comment }}</p>
+                    <span>
+                        <small>{{ comment.user }}</small>
+                        <small>{{ comment.created_at | timesince }} ago</small>
+                    </span>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p class="text-muted animate">No comments yet</p>
+                {% endif %}
+
+                <!-- Comment form -->
+                <div class="comment-form">
+                    {% if user.is_authenticated %}
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <textarea name="comment" placeholder="Write Your Comment" class="form-control"></textarea>
+                            <input type="submit" class="btn mt-2" value="Post Comment">
+                        </div>
+                    </form>
+                    {% else %}
+                    <p style="color: white;" class="animate">Please <a href="{% url 'login' %}">Login</a> to write a comment!</p>
+                    {% endif %}
+                </div>
+            </article>
+        </div>
+        <!-- Side widgets -->
+        <div class="col-lg-4">
+            <!-- Categories widget -->
+            <!-- <div class="sidebar-card animate">
+                <h4 class="font-italic">Categories</h4>
+                <ul class="list-unstyled mb-0">
+                    {% for cat in categories %}
+                    <li><a href="{% url 'posts_by_category' cat.id %}">{{ cat.category_name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div> -->
+            <!-- Follow Us widget -->
+            <div class="sidebar-card animate">
+                <h4 class="font-italic">Follow Us</h4>
+                <ul class="list-unstyled">
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

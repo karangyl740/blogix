@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogix Notes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', 'Arial', sans-serif;
+            background-color: #F5F5F5; /* Off-white */
+            color: #666666; /* Soft gray */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #2E7D32; /* Dark Leaf Green */
+            padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Space between Blogix Notes and Home button */
+        }
+
+        .navbar-brand a:first-child {
+            font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+            font-size: 24px;
+            color: #D2B48C; /* Light Wood */
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .navbar-brand a:first-child:hover {
+            color: #D4A017; /* Gold */
+            transform: scale(1.05);
+        }
+
+        .navbar-brand .button.is-primary {
+            padding: 8px 15px; /* Adjust padding for consistency */
+            font-size: 14px; /* Smaller font for better fit */
+        }
+
+        .navbar-menu {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .navbar-item {
+            color: #F5F5F5;
+            font-size: 16px;
+            padding: 10px 15px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .navbar-item:hover {
+            background: #4CAF50; /* Leaf Green */
+            transform: translateY(-2px);
+        }
+
+        /* Section */
+        .section {
+            padding: 40px 20px;
+        }
+
+        .columns {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+
+        .column {
+            padding: 10px;
+        }
+
+        .is-2 {
+            flex: 0 0 20%;
+            max-width: 20%;
+        }
+
+        .is-10 {
+            flex: 0 0 80%;
+            max-width: 80%;
+        }
+
+        /* Sidebar */
+        .menu {
+            background: #D2B48C; /* Light Wood */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .menu-label {
+            font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+            font-size: 20px;
+            color: #2E7D32; /* Dark Leaf Green */
+            margin-bottom: 15px;
+        }
+
+        .menu-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu-list li {
+            margin-bottom: 10px;
+        }
+
+        .menu-list a {
+            color: #666666;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 8px 12px;
+            display: block;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .menu-list a:hover {
+            background: #4CAF50; /* Leaf Green */
+            color: #F5F5F5;
+            transform: translateX(5px);
+        }
+
+        /* Form */
+        .editor-form {
+            background: #F5F5F5; /* Off-white */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        .label {
+            font-family: 'Roboto', 'Arial', sans-serif;
+            font-size: 16px;
+            color: #2E7D32; /* Dark Leaf Green */
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .has-text-grey-light {
+            font-size: 12px;
+            color: #999999; /* Lighter gray */
+        }
+
+        .input, .textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #8B5A2B; /* Rich Brown */
+            border-radius: 5px;
+            font-size: 14px;
+            background: #F5F5F5; /* Off-white */
+            color: #666666;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+        }
+
+        .input:focus, .textarea:focus {
+            border-color: #4CAF50; /* Leaf Green */
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+            outline: none;
+            transform: scale(1.01);
+        }
+
+        .textarea {
+            resize: vertical;
+            min-height: 200px;
+        }
+
+        .field.is-grouped {
+            display: flex;
+            gap: 15px; /* Increased for better spacing */
+            align-items: center;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        .control {
+            flex: 0 0 auto;
+        }
+
+        .button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none; /* Ensure no underline on <a> buttons */
+            text-align: center;
+            min-width: 100px; /* Consistent button width */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .is-primary {
+            background: #4CAF50; /* Leaf Green */
+            color: #F5F5F5;
+        }
+
+        .is-primary:hover {
+            background: #D4A017; /* Gold */
+            transform: scale(1.05);
+        }
+
+        .is-danger {
+            background: #D32F2F; /* Red */
+            color: #F5F5F5;
+        }
+
+        .is-danger:hover {
+            background: #B71C1C; /* Darker red */
+            transform: scale(1.05);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .is-2, .is-10 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+
+            .navbar-menu {
+                justify-content: center;
+            }
+
+            .navbar-item {
+                font-size: 14px;
+                padding: 8px 10px;
+            }
+
+            .editor-form {
+                padding: 15px;
+            }
+
+            .field.is-grouped {
+                flex-wrap: wrap;
+                gap: 10px;
+                justify-content: center;
+            }
+
+            .button {
+                min-width: 80px; /* Smaller buttons on mobile */
+            }
+
+            .navbar-brand {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .navbar-brand a:first-child {
+                font-size: 20px; /* Slightly smaller for mobile */
+            }
+
+            .navbar-brand .button.is-primary {
+                padding: 6px 12px; /* Smaller padding for mobile */
+                font-size: 12px; /* Smaller font for mobile */
+            }
+        }
+    </style>
+
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="{% url 'editor' %}">Blogix Notes</a>
+            <a href="{% url 'home' %}" class="button is-primary">Home</a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-end">
+                <a href="{% url 'editor' %}?docid=0" class="navbar-item">New Document</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="columns">
+            <div class="column is-2">
+                <aside class="menu">
+                    <p class="menu-label">Documents</p>
+                    <ul class="menu-list">
+                        {% for doc in documents %}
+                            <li>
+                                <a href="{% url 'editor' %}?docid={{ doc.id }}">{{ doc.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </aside>
+            </div>
+
+            <div class="column is-10">
+                <form method="post" action="{% url 'editor' %}" class="editor-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="docid" value="{{ docid }}">
+
+                    <div class="field">
+                        <label class="label">
+                            Title
+                            {% if document %}
+                                <span class="has-text-grey-light">
+                                    Created at: {{ document.uploaded_at|date:"m/d Y" }} / 
+                                    Modified at: {{ document.modified_at|date:"m/d Y" }}
+                                </span>
+                            {% endif %}
+                        </label>
+                        <div class="control">
+                            <input type="text" class="input" name="title" placeholder="Title"{% if document %} value="{{ document.title }}"{% endif %}>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Content</label>
+                        <div class="control">
+                            <textarea class="textarea" name="content" placeholder="Content">{% if document %}{{ document.content }}{% endif %}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="button is-primary">Save</button>
+                        </div>
+                        
+                        {% if document %}
+                            <div class="control">
+                                <a href="{% url 'delete_document' document.id %}" class="button is-danger">Delete</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        (function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'931e77f78d82bfe2',t:'MTc0NDkxOTYwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();
+    </script>
+</body>
+</html>

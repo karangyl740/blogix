@@ -1,0 +1,71 @@
+{% extends './base/base.html' %}
+{% block title %}Blogix Contact Us{% endblock %}
+{% block content %}
+<section class="contact-us">
+    <div class="container">
+        <header class="contact-header text-center">
+            <h1 style="color: white;" class="animate">Contact Us</h1>
+            <p style="color: white;">We’re here to help! Reach out with your questions, feedback, or just to say hello.</p>
+        </header>
+        <!-- Contact Form -->
+        <div class="contact-form animate">
+            <form action="{% url 'contact' %}" method="POST" class="auth-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea name="message" id="message" class="form-control" placeholder="Your Message" rows="6" required></textarea>
+                </div>
+                <a type="submit" class="btn" href="{% url 'home' %}">Send Message</a>
+            </form>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="contact-info row">
+            <div class="col-md-4 animate">
+                <div class="info-card">
+                    <div class="icon">📧</div>
+                    <h3>Email</h3>
+                    <p><h5>blogix740@gmail.com</h5></p>
+                </div>
+            </div>
+            <div class="col-md-4 animate">
+                <div class="info-card">
+                    <div class="icon">📞</div>
+                    <h3>Phone</h3>
+                    <p><h5>+917404323152</h5></p>
+                </div>
+            </div>
+            <div class="col-md-4 animate">
+                <div class="info-card">
+                    <div class="icon">📍</div>
+                    <h3>Address</h3>
+                    <p>Chitkara University Rajpura Punjab</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Media Links -->
+        <div class="social-links text-center animate">
+            <h3 style="color: white;" class="section-title">Connect With Us</h3>
+            <div class="social-links">
+                <a href="https://www.instagram.com/yourprofile" target="_blank" title="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://x.com/yourprofile" target="_blank" title="Follow us on X"><i class="fab fa-twitter"></i></a>
+                <a href="https://t.me/yourprofile" target="_blank" title="Join us on Telegram"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://www.linkedin.com/company/yourprofile" target="_blank" title="Connect with us on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

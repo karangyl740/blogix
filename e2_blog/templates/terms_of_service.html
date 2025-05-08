@@ -1,0 +1,79 @@
+{% extends './base/base.html' %}
+{% block title %}Blogix Terms of Service{% endblock %}
+{% block content %}
+<section class="terms-of-service">
+    <div class="container">
+        <header class="terms-header text-center">
+            <h1 style="color: white;" class="animate">Terms of Service</h1>
+            <p style="color: white;">Last updated: April 17, 2025</p>
+            <p style="color: white;">Please read these Terms of Service carefully before using Blogix. By accessing or using our platform, you agree to be bound by these terms.</p>
+        </header>
+
+        <div class="terms-content">
+            <div class="terms-section animate">
+                <h2>1. Acceptance of Terms</h2>
+                <p>By using Blogix, you agree to these Terms of Service, our Privacy Policy, and any additional guidelines or rules provided by Blogix. If you do not agree, please do not use our services.</p>
+            </div>
+
+            <div class="terms-section animate">
+                <h2>2. User Accounts</h2>
+                <p>You must create an account to access certain features of Blogix. You are responsible for maintaining the confidentiality of your account credentials and for all activities under your account.</p>
+                <ul>
+                    <li>Provide accurate and complete information during registration.</li>
+                    <li>Notify us immediately of any unauthorized use of your account.</li>
+                    <li>You may not share your account with others.</li>
+                </ul>
+            </div>
+
+            <div class="terms-section animate">
+                <h2>3. Content Ownership and Responsibility</h2>
+                <p>You retain ownership of the content you create and post on Blogix. However, by posting content, you grant Blogix a non-exclusive, royalty-free license to use, display, and distribute your content on our platform.</p>
+                <p>You are solely responsible for your content, which must not:</p>
+                <ul>
+                    <li>Violate any laws or regulations.</li>
+                    <li>Infringe on the rights of others.</li>
+                    <li>Contain harmful, offensive, or inappropriate material.</li>
+                </ul>
+            </div>
+
+            <div class="terms-section animate">
+                <h2>4. Prohibited Conduct</h2>
+                <p>You agree not to:</p>
+                <ul>
+                    <li>Use Blogix for illegal purposes.</li>
+                    <li>Attempt to hack, disrupt, or overload our systems.</li>
+                    <li>Post spam, advertisements, or unsolicited content without permission.</li>
+                    <li>Harass or harm other users.</li>
+                </ul>
+            </div>
+
+            <div class="terms-section animate">
+                <h2>5. Termination</h2>
+                <p>We reserve the right to suspend or terminate your account if you violate these Terms of Service or engage in conduct that we deem harmful to Blogix or its users.</p>
+            </div>
+
+            <div class="terms-section animate">
+                <h2>6. Limitation of Liability</h2>
+                <p>Blogix is provided "as is" without warranties of any kind. We are not liable for any damages arising from your use of the platform, including but not limited to data loss, service interruptions, or third-party actions.</p>
+            </div>
+
+            <div class="terms-section animate">
+                <h2>7. Changes to Terms</h2>
+                <p>We may update these Terms of Service from time to time. We will notify you of significant changes via email or through the platform. Continued use of Blogix after changes constitutes acceptance of the new terms.</p>
+            </div>
+
+            <div class="terms-section animate">
+                <h2>8. Contact Us</h2>
+                <p>If you have questions about these Terms of Service, please contact us at:</p>
+                <p><a href="mailto:support@blogix.com">support@blogix.com</a></p>
+                <p><a href="{% url 'contact' %}">Contact Us</a></p>
+            </div>
+        </div>
+
+        <div class="terms-footer text-center animate">
+            <p style="color: white;">Thank you for being a part of Blogix. Let’s create something amazing together!</p>
+            <a href="{% url 'contact' %}" class="btn">Get in Touch</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

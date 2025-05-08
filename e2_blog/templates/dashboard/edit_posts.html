@@ -1,0 +1,148 @@
+{% extends '../base/base.html' %}
+
+{% block content %}
+<style>
+    /* Container Styles */
+    .row {
+        background-color: #F5F5F5; /* Off-white */
+        padding: 40px 20px;
+        min-height: 100vh;
+    }
+
+    .col-md-9 {
+        background: #F5F5F5; /* Off-white */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 1s ease-out;
+    }
+
+    /* Heading */
+    h3 {
+        font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+        color: #2E7D32; /* Dark Leaf Green */
+        font-size: 24px;
+        margin-bottom: 20px;
+        animation: slideUp 0.8s ease-out;
+    }
+
+    /* Form Styles */
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    form p {
+        margin-bottom: 20px;
+        animation: slideUp 0.8s ease-out;
+    }
+
+    label {
+        font-family: 'Roboto', 'Arial', sans-serif;
+        font-size: 16px;
+        color: #2E7D32; /* Dark Leaf Green */
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="file"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #8B5A2B; /* Rich Brown */
+        border-radius: 5px;
+        font-size: 14px;
+        background: #F5F5F5; /* Off-white */
+        color: #666666; /* Soft Gray */
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="file"]:focus,
+    textarea:focus {
+        border-color: #4CAF50; /* Leaf Green */
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        outline: none;
+        transform: scale(1.01);
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 150px;
+    }
+
+    /* Button */
+    button[type="submit"] {
+        background: #4CAF50; /* Leaf Green */
+        color: #F5F5F5; /* Off-white */
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        min-width: 120px;
+        text-align: center;
+    }
+
+    button[type="submit"]:hover {
+        background: #D4A017; /* Gold */
+        transform: scale(1.05);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .col-md-9 {
+            padding: 15px;
+        }
+
+        h3 {
+            font-size: 20px;
+        }
+
+        button[type="submit"] {
+            min-width: 100px;
+            padding: 8px 15px;
+            font-size: 12px;
+        }
+    }
+</style>
+
+<div class="row">
+    <!-- left sidebar -->
+    {% include './leftsidebar.html' %}
+
+    {% load crispy_forms_tags %}
+    <!-- right sidebar -->
+    <div class="col-md-9">
+        <h3>Edit Blog</h3>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Update Blog</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

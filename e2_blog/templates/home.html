@@ -1,0 +1,97 @@
+{% extends './base/base.html' %}
+{% block content %}
+<section class="hero">
+  <div class="hero-content">
+      <div class="hero-text">
+          <h1>"Blogix - Power Your Voice, Inspire the World."</h1>
+      </div>
+      <img src="https://wordpress.com/wp-content/uploads/2024/09/lohp-i3-hero-2x.png" alt="Blogix Hero">
+  </div>
+</section>
+
+{% for post in featured_post %}
+    {% if forloop.first %}
+<div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" style="background-image: url({{post.blog_image.url}});background-blend-mode: overlay;background-size:cover;">
+    <div class="col-md-8 px-0">
+        <h1 class="display-4 font-italic"><a href="{% url 'blogs' post.slug %}" style="color: white;">{{post.title}}</a></h1>
+        <p class="lead my-3">{{post.short_description | truncatewords:20}}</p>
+        <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
+    </div>
+</div>
+    {% endif %}
+{% endfor %}
+
+<!-- Featured Post -->
+<h3 class="section-title featured">FEATURED POST</h3>
+<div class="row mb-2">
+    {% for post in featured_post %}
+    {% if not forloop.first %}
+    <div class="col-md-6">
+        <div class="card border-0 post-card featured-post">
+            <div class="card-body">
+                <h3><a href="{% url 'blogs' post.slug %}">{{post.title}}</a></h3>
+                <small class="mb-1 text-muted">{{ post.created_at | timesince }} ago | {{ post.author }}</small>
+                <p class="card-text">{{ post.short_description | truncatewords:20 }}</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+<!-- Features Section -->
+<div class="features">
+    <div class="card feature-card">
+        <div class="icon">📈</div>
+        <h3>Room to grow</h3>
+        <p>Scale as you go with unmetered bandwidth on all plans. Zero downtime. No limits.</p>
+    </div>
+    <div class="card feature-card">
+        <div class="icon">🛡</div>
+        <h3>Seriously secure</h3>
+        <p>Firewalls, encryption, brute force, and DDoS protection. Security’s all taken care of.</p>
+    </div>
+    <div class="card feature-card">
+        <div class="icon">🌐</div>
+        <h3>Bring it with you</h3>
+        <p>Fast data transfer and performance come as standard with our global CDN—wherever your site visitors are.</p>
+    </div>
+    <div class="card feature-card">
+        <div class="icon">☁</div>
+        <h3>Flexible storage</h3>
+        <p>You’ll never run out of storage with WordPress.com’s plans. Photos. Audio. 4K videos. All in one place.</p>
+    </div>
+</div>
+
+<!-- Recent Articles -->
+<h3 class="section-title recent">RECENT ARTICLES</h3>
+<main role="main" class="p-0">
+    <div class="row">
+        <div class="col-md-8 blog-main">
+            {% for post in posts %}
+            <div class="card border-0 post-card">
+                <div class="card-body">
+                    <h3><a href="{% url 'blogs' post.slug %}">{{post.title}}</a></h3>
+                    <small class="mb-1 text-muted">{{ post.created_at | timesince }} ago | {{ post.author }}</small>
+                    <p class="card-text">{{ post.short_description | truncatewords:20 }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <aside class="col-md-4 blog-sidebar">
+            <div class="sidebar-card">
+                <h4 class="font-italic">About</h4>
+                <p class="mb-0">Blogix is your runway to shine. Unleash your fashion flair, share your style stories, and inspire a global audience. Our secure, scalable platform empowers you to create stunning blogs, showcase the latest trends, and connect with a vibrant community of trendsetters. With Blogix, your voice sets the fashion world ablaze.</p>
+            </div>
+            <div class="p-3">
+                <h4 class="font-italic">Follow Us</h4>
+                <ol class="list-unstyled">
+                    <li><a href="https://github.com/karangyl740/blog-project" style="color: #2E7D32;">GitHub</a></li>
+                    <li><a href="https://www.linkedin.com/in/karan-goyal-b1b322300/" style="color: #2E7D32;">LinkedIn</a></li>
+                </ol>
+            </div>
+        </aside>
+    </div>
+</main>
+{% endblock %}

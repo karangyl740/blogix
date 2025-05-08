@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blogix</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f7fa;
+            color: #333;
+            padding: 40px;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        h3 {
+            text-align: center;
+            color: #34495e;
+            font-size: 1.5em;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .section h2 {
+            border-bottom: 2px solid #eceff1;
+            padding-bottom: 12px;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            color: #34495e;
+            font-weight: 500;
+        }
+
+        .item {
+            background: #f9fafc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+            border: 1px solid #e6ecef;
+        }
+
+        .item:hover {
+            background: #fff;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .blog-line {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.85em;
+            padding: 6px 12px;
+            border-radius: 50px;
+            margin-right: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .published {
+            background-color: #27ae60;
+            color: white;
+        }
+
+        .draft {
+            background-color: #e67e22;
+            color: white;
+        }
+
+        .featured {
+            background-color: #f1c40f;
+            color: #333;
+        }
+
+        em {
+            color: #7f8c8d;
+            font-style: italic;
+            font-size: 0.95em;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            .section {
+                padding: 25px;
+            }
+            h1 {
+                font-size: 2.2em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>📊 Blogix</h1>
+    <h3>Published Blogs</h3>
+
+    <div class="section">
+        <h2>📝 Blogs</h2>
+        {% for blog in blogs %}
+        <div class="item">
+            <div class="blog-line"><strong>{{ blog.title }}</strong> by {{ blog.author.username }}</div>
+            <div class="blog-line">Category: {{ blog.category.category_name }}</div>
+            <div class="blog-line">
+                <span class="badge {% if blog.status == 'Published' %}published{% else %}draft{% endif %}">
+                    {{ blog.status }}
+                </span>
+                {% if blog.is_feacherd %}
+                <span class="badge featured">⭐ Featured</span>
+                {% endif %}
+            </div>
+            <div class="blog-line"><em>{{ blog.short_description }}</em></div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <h2>📂 Categories</h2>
+        {% for cat in categories %}
+        <div class="item">{{ cat.category_name }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <h2>💬 Comments</h2>
+        {% for comment in comments %}
+        <div class="item">
+            <strong>{{ comment.user.username }}</strong> on <strong>{{ comment.blog.title }}</strong><br>
+            "{{ comment.comment }}"
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <h2>👤 Users</h2>
+        {% for user in users %}
+    <p><strong>{{ user.username }}</strong> - {{ user.email }}</p>
+{% endfor %}
+
+    </div>
+</body>
+</html>

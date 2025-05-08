@@ -1,0 +1,106 @@
+{% extends './base/base.html' %}
+{% block title %}Blogix Help Center{% endblock %}
+{% block content %}
+<section class="help-center">
+    <div class="container">
+        <header class="help-header text-center">
+            <h1 style="color: white;" class="animate">Blogix Help Center</h1>
+            <p style="color: white;" class="lead animate-fade">Your one-stop resource for mastering Blogix. Find answers, guides, and support to power your voice.</p>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="help-search text-center animate">
+            <form action="{% url 'search' %}" method="GET" class="search-form">
+                <div class="input-group">
+                    <input class="form-control" name="keyword" type="text" placeholder="Search for help topics..." aria-label="Search for help topics..." aria-describedby="button-search" />
+                    <button type="submit" class="btn btn-light" id="button-search">Search</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Help Categories -->
+        <div class="help-categories row">
+            <div class="col-md-4 animate">
+                <div class="help-card">
+                    <div class="icon">📝</div>
+                    <h3>Getting Started</h3>
+                    <p>Learn how to create your first blog, set up your profile, and navigate the Blogix dashboard.</p>
+                    <a href="{% url 'home' %}" class="btn">Explore</a>
+                </div>
+            </div>
+            <div class="col-md-4 animate">
+                <div class="help-card">
+                    <div class="icon">✍️</div>
+                    <h3>Writing & Publishing</h3>
+                    <p>Discover tips for crafting engaging posts, using the editor, and publishing your content.</p>
+                    <a href="{% url 'add_posts' %}" class="btn">Explore</a>
+                </div>
+            </div>
+            <div class="col-md-4 animate">
+                <div class="help-card">
+                    <div class="icon">🛠</div>
+                    <h3>Troubleshooting</h3>
+                    <p>Find solutions to common issues, from login problems to image uploads.</p>
+                    <a href="{% url 'contact' %}" class="btn">Explore</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="accordion" id="faqAccordion">
+                <div class="card animate">
+                    <div class="card-header" id="faq1">
+                        <h3 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                How do I create a new blog post?
+                            </button>
+                        </h3>
+                    </div>
+                    <div id="collapse1" class="collapse show" aria-labelledby="faq1" data-parent="#faqAccordion">
+                        <div class="card-body">
+                            To create a new blog post, log in to your Blogix account, navigate to the Dashboard, and click on the "Notes" button in the header. Use the editor to write your post, add images, and publish when ready.
+                        </div>
+                    </div>
+                </div>
+                <div class="card animate">
+                    <div class="card-header" id="faq2">
+                        <h3 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                Can I customize my blog’s appearance?
+                            </button>
+                        </h3>
+                    </div>
+                    <div id="collapse2" class="collapse" aria-labelledby="faq2" data-parent="#faqAccordion">
+                        <div class="card-body">
+                            Yes, Blogix offers customization options through the Dashboard. You can choose themes, adjust layouts, and add custom CSS to match your style.
+                        </div>
+                    </div>
+                </div>
+                <div class="card animate">
+                    <div class="card-header" id="faq3">
+                        <h3 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                What should I do if I forget my password?
+                            </button>
+                        </h3>
+                    </div>
+                    <div id="collapse3" class="collapse" aria-labelledby="faq3" data-parent="#faqAccordion">
+                        <div class="card-body">
+                            Click the "Forgot Password" link on the login page. Enter your email address, and we’ll send you a link to reset your password.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Support -->
+        <div class="contact-support text-center animate">
+            <h2 style="color: white;" class="section-title">Still Need Help?</h2>
+            <p style="color: white;" class="lead">Our support team is here for you. Reach out with your questions or feedback.</p>
+            <a href="{% url 'contact' %}" class="btn">Contact Support</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

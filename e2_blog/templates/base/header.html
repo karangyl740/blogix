@@ -1,0 +1,237 @@
+{% load static %}
+<div class="container">
+    <header class="blog-header">
+        <style>
+            /* Header Styles */
+            .blog-header {
+                background: #2E7D32; /* Dark Leaf Green */
+                padding: 15px 20px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                animation: fadeInDown 0.8s ease-out;
+            }
+
+            .header-content {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .blog-header-logo {
+                font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+                font-size: 24px;
+                color: #D2B48C; /* Light Wood */
+                text-decoration: none;
+                transition: color 0.3s ease, transform 0.3s ease;
+            }
+
+            .blog-header-logo:hover {
+                color: #D4A017; /* Gold */
+                transform: scale(1.05);
+            }
+
+            /* Search Form */
+            .search-form .input-group {
+                max-width: 300px;
+            }
+
+            .search-form .form-control {
+                border: 1px solid #8B5A2B; /* Rich Brown */
+                background: #F5F5F5; /* Off-white */
+                color: #666666; /* Soft Gray */
+                border-radius: 5px 0 0 5px;
+                transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .search-form .form-control:focus {
+                border-color: #4CAF50; /* Leaf Green */
+                box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+                outline: none;
+            }
+
+            .search-form .btn-light {
+                background: #4CAF50; /* Leaf Green */
+                color: #F5F5F5;
+                border: none;
+                border-radius: 0 5px 5px 0;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+
+            .search-form .btn-light:hover {
+                background: #D4A017; /* Gold */
+                transform: scale(1.05);
+            }
+
+            /* Auth Buttons */
+            .auth-buttons {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                animation: fadeIn 1s ease-out;
+            }
+
+            .header-btn {
+                padding: 6px 12px;
+                font-size: 14px;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+
+            .btn-light {
+                background: #4CAF50; /* Leaf Green */
+                color: #F5F5F5;
+                border: none;
+            }
+
+            .btn-light:hover {
+                background: #D4A017; /* Gold */
+                transform: scale(1.05);
+            }
+
+            .btn-outline-light {
+                border-color: #D2B48C; /* Light Wood */
+                color: #D2B48C;
+            }
+
+            .btn-outline-light:hover {
+                background: #D4A017; /* Gold */
+                color: #F5F5F5;
+                transform: scale(1.05);
+            }
+
+            .admin-btn {
+                background: #2E7D32; /* Dark Leaf Green */
+                color: #F5F5F5;
+                border: none;
+                animation: fadeIn 1.2s ease-out;
+            }
+
+            .admin-btn:hover {
+                background: #D4A017; /* Gold */
+                transform: scale(1.05);
+            }
+
+            /* Category Navigation */
+            .category-nav {
+                background: #D2B48C; /* Light Wood */
+                padding: 10px 0;
+                margin-top: 10px;
+                border-radius: 5px;
+            }
+
+            .category-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .category-list li {
+                flex: 1 1 auto;
+                text-align: center;
+            }
+
+            .category-list a {
+                color: #666666; /* Soft Gray */
+                text-decoration: none;
+                font-size: 14px;
+                padding: 8px;
+                display: block;
+                transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            }
+
+            .category-list a:hover {
+                background: #4CAF50; /* Leaf Green */
+                color: #F5F5F5;
+                transform: translateY(-2px);
+            }
+
+            /* Animations */
+            @keyframes fadeInDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+
+            /* Responsive Design */
+            @media (max-width: 768px) {
+                .header-content {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                .search-form .input-group {
+                    max-width: 100%;
+                }
+
+                .auth-buttons {
+                    justify-content: center;
+                    width: 100%;
+                }
+
+                .header-btn {
+                    font-size: 12px;
+                    padding: 5px 10px;
+                }
+
+                .category-list {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .category-list li {
+                    width: 100%;
+                }
+            }
+        </style>
+
+        <div class="header-content">
+            <!-- Logo -->
+            <a class="blog-header-logo" href="{% url 'home' %}">BLOGIX</a>
+            <!-- Search Bar -->
+            <form action="{% url 'search' %}" method="GET" class="search-form">
+                <div class="input-group">
+                    <input class="form-control" name="keyword" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                    <button type="submit" class="btn btn-light" id="button-search">Go!</button>
+                </div>
+            </form>
+            <!-- Auth Buttons -->
+            <div class="auth-buttons">
+                {% if not user.is_authenticated %}
+                <a class="btn btn-sm btn-light header-btn" href="{% url 'login' %}">Login</a>
+                <a class="btn btn-sm btn-outline-light header-btn" href="{% url 'register' %}">Register</a>
+                {% else %}
+                <a class="btn btn-sm btn-light header-btn" href="{% url 'dashboard' %}">Dashboard</a>
+                <a class="btn btn-sm btn-outline-light header-btn" href="{% url 'logout' %}">Logout</a>
+                <a class="btn btn-sm btn-light header-btn" href="{% url 'editor' %}">Notes</a>
+                {% if user.is_superuser %}
+                <a class="btn btn-sm btn-light header-btn admin-btn" href="{% url 'admin:index' %}">Admin</a>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        <!-- Categories Navigation -->
+        <!-- {% if user.is_authenticated %}
+        <nav class="category-nav">
+            <ul class="category-list" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                {% for cat in categories %}
+                <li><a style="color: white;" href="{% url 'posts_by_category' cat.id %}">{{ cat.category_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+        {% endif %} -->
+    </header>
+</div>

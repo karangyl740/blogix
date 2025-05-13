@@ -97,9 +97,6 @@ Authorization: Bearer <your_jwt_token>
 
 ---
 
-## 📸 Screenshots
-
-_Add UI screenshots here (optional)_
 
 ---
 
@@ -110,9 +107,3 @@ _Add UI screenshots here (optional)_
 3. Commit your changes: `git commit -m "Add some feature"`
 4. Push to the branch: `git push origin feature/new-feature`
 5. Create a new Pull Request
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.

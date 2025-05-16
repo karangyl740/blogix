@@ -32,31 +32,30 @@
 
 ## 🚀 Getting Started
 
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/yourusername/blogix.git
-cd blogix
-```
-
-### 2. Set Up a Virtual Environment (optional)
+### 1. Set Up a Virtual Environment (optional)
 
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-### 3. Install Requirements
+### 2. Install Requirements
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Run Django Server
+### 3. Run Django Server
 
 ```bash
 cd e2_blog
+python manage.py makemigrations
 python manage.py migrate
+```
+### 4. Run Django Superuser
+
+```bash
+python manage.py createsuperuser
 python manage.py runserver
 ```
 
